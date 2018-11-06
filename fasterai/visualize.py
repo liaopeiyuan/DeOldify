@@ -32,7 +32,7 @@ class ModelImageVisualizer():
         training = model.training 
         model.eval()
         orig = self.get_model_ready_image_ndarray(path, model, ds, sz, tfms)
-        orig = VV(orig[None])
+        orig = VV(orig[None]).cpu()
         result = model(orig).detach().cpu().numpy()
         result = ds.denorm(result)
         if training:
